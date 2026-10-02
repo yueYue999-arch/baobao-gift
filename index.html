@@ -16,7 +16,7 @@
   font-synthesis: none;
   --rose: #b9577b;
   --line: #e9bccd;
-  --card-width: clamp(210px, 65vw, 284px);
+  --card-width: clamp(194px, 59vw, 250px);
 }
 * { box-sizing: border-box; }
 html, body { width: 100%; height: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
@@ -92,26 +92,30 @@ h1 { margin: 0; font-size: 22px; font-weight: 500; line-height: 1.5; letter-spac
   position: absolute;
   width: calc(var(--card-width) * var(--width-factor, 1));
   max-width: 100%;
+  border-radius: 8px;
   background: var(--paper);
-  transform: rotate(var(--tilt, 0deg));
-  animation: arrive 240ms cubic-bezier(.2,.8,.2,1) both;
+  box-shadow: 0 5px 13px #63718224, 0 1px 3px #63718212;
+  transform-origin: center;
+  animation: arrive 380ms cubic-bezier(.16,1,.3,1) both;
 }
+.message-window .window-bar { min-height: 23px; padding: 2px 10px; font-size: 11px; }
+.message-window .window-bar span:first-child { font-size: 13px; }
 .message-window p {
   margin: 0;
-  min-height: 54px;
+  min-height: 43px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 10px 15px;
+  padding: 8px 10px 10px;
   color: #624653;
-  font-size: clamp(17px, 4.5vw, 19px);
-  line-height: 26px;
+  font-size: clamp(16px, 4.3vw, 18px);
+  line-height: 24px;
   font-weight: 500;
   letter-spacing: .025em;
   white-space: nowrap;
 }
-.message-window.is-older { box-shadow: 0 1px 4px #8056660a; }
-.message-window:last-child { box-shadow: 0 7px 22px #80566620, 0 1px 4px #80566614; }
+.message-window.is-older { box-shadow: 0 3px 9px #63718213, 0 1px 2px #6371820a; }
+.message-window:last-child { box-shadow: 0 7px 20px #6371822e, 0 1px 4px #63718218; }
 .controls {
   position: absolute;
   z-index: 1000;
@@ -134,8 +138,10 @@ h1 { margin: 0; font-size: 22px; font-weight: 500; line-height: 1.5; letter-spac
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .no-script { position: absolute; bottom: 20px; width: 100%; text-align: center; font-size: 14px; }
 @keyframes arrive {
-  from { opacity: 0; transform: translateY(8px) rotate(var(--tilt, 0deg)) scale(.97); }
-  to { opacity: 1; transform: translateY(0) rotate(var(--tilt, 0deg)) scale(1); }
+  0% { opacity: 0; transform: translateY(24px) scale(.6); }
+  42% { opacity: 1; transform: translateY(-3px) scale(1.045); }
+  72% { opacity: 1; transform: translateY(0) scale(.99); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 @media (min-width: 768px) {
   #windows {
@@ -343,17 +349,14 @@ window.GIFT_MESSAGES = Object.freeze([
       return value - Math.floor(value);
     };
     const centered = index === 0 || index === messages.length - 1;
-    const angle = centered ? 0 : (scatter(39.425) - .5) * 12;
-    card.style.setProperty("--tilt", `${angle}deg`);
-    card.style.setProperty("--width-factor", String(.92 + scatter(8.317) * .18));
+    card.style.setProperty("--width-factor", String(.94 + scatter(8.317) * .12));
     const width = card.offsetWidth;
     const height = card.offsetHeight;
-    // Reserve the rotated corners so even narrow phones keep every new note in view.
-    const radians = Math.abs(angle) * Math.PI / 180;
-    const insetX = Math.max(0, (width * Math.cos(radians) + height * Math.sin(radians) - width) / 2);
-    const insetY = Math.max(0, (height * Math.cos(radians) + width * Math.sin(radians) - height) / 2);
+    // Leave room for the 1.045 scale peak and upward entrance; all notes stay level.
+    const insetX = Math.ceil(width * .045 / 2) + 1;
+    const insetY = 14;
     const roomX = Math.max(0, windows.clientWidth - width - insetX * 2);
-    const roomY = Math.max(0, windows.clientHeight - height - insetY * 2 - 8);
+    const roomY = Math.max(0, windows.clientHeight - height - insetY * 2);
     // A scattered sequence fills the phone without falling into neat repeating rows.
     const x = centered ? .5 : scatter(12.9898);
     const y = centered ? .46 : (index * .618034 + scatter(78.233) * .24) % 1;
