@@ -11,15 +11,15 @@
 :root {
   color-scheme: light;
   font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
-  color: #503a44;
+  color: #624653;
   background: #fff5f8;
   font-synthesis: none;
   --rose: #b9577b;
   --line: #e9bccd;
-  --card-width: clamp(210px, 64vw, 264px);
+  --card-width: clamp(224px, 68vw, 284px);
 }
 * { box-sizing: border-box; }
-html, body { width: 100%; height: 100%; }
+html, body { width: 100%; height: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body { margin: 0; overflow: hidden; overscroll-behavior: none; }
 button { font: inherit; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 button:focus-visible { outline: 3px solid #a34468; outline-offset: 4px; }
@@ -43,36 +43,37 @@ button:focus-visible { outline: 3px solid #a34468; outline-offset: 4px; }
 }
 .invitation, .message-window {
   border: 1px solid #ffffffd9;
-  border-radius: 12px;
+  border-radius: 13px;
   overflow: hidden;
-  box-shadow: 0 5px 15px #8056661f, 0 1px 3px #80566614;
+  box-shadow: 0 5px 16px #91627716, 0 1px 3px #8056660d;
 }
 .window-bar {
   display: flex;
   align-items: center;
-  gap: 6px;
-  min-height: 28px;
-  padding: 4px 12px;
+  gap: 7px;
+  min-height: 27px;
+  padding: 4px 13px;
   color: #704c5c;
   font-size: 12px;
   line-height: 19px;
   font-weight: 500;
   background: var(--bar, #f6dce6);
 }
-.window-bar span:first-child { font-size: 13px; }
+.window-bar span:first-child { color: #bd6b8d; font-size: 15px; line-height: 18px; }
 .invitation {
   position: absolute;
   top: 47%; left: 50%;
   transform: translate(-50%, -50%);
-  width: min(332px, calc(100% - 48px));
+  width: min(340px, calc(100% - 48px));
   background: #fffdfe;
   box-shadow: 0 16px 48px #ac6f891c, 0 2px 8px #ac6f890d;
-  border-radius: 16px;
+  border: 1px solid #f2dce5;
+  border-radius: 18px;
 }
 .invitation .window-bar { padding: 7px 14px; background: #fae5ed; }
-.invitation-body { padding: 20px 28px 28px; text-align: center; }
-.gift-envelope { display: block; width: 96px; height: 77px; margin: 0 auto 16px; }
-h1 { margin: 0; font-size: 22px; font-weight: 600; line-height: 1.5; letter-spacing: .02em; }
+.invitation-body { padding: 24px 28px 30px; text-align: center; }
+.gift-envelope { display: block; width: 108px; height: 86px; margin: 0 auto 18px; }
+h1 { margin: 0; font-size: 22px; font-weight: 500; line-height: 1.5; letter-spacing: .04em; }
 #invitation-note { margin: 10px 0 26px; color: #8d6d7b; font-size: 13px; line-height: 1.6; }
 .choices button {
   width: 100%;
@@ -92,22 +93,24 @@ h1 { margin: 0; font-size: 22px; font-weight: 600; line-height: 1.5; letter-spac
   width: var(--card-width);
   max-width: 100%;
   background: var(--paper);
-  animation: arrive 440ms cubic-bezier(.16,1,.3,1) both;
+  animation: arrive 300ms cubic-bezier(.2,.8,.2,1) both;
 }
 .message-window p {
   margin: 0;
-  min-height: 48px;
+  min-height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 8px 13px;
-  color: #503a44;
-  font-size: clamp(16px, 4.4vw, 18px);
-  line-height: 25px;
-  font-weight: 600;
+  padding: 12px 10px 15px;
+  color: #624653;
+  font-size: clamp(17px, 4.5vw, 19px);
+  line-height: 26px;
+  font-weight: 500;
+  letter-spacing: .025em;
   white-space: nowrap;
 }
-.message-window:last-child { box-shadow: 0 8px 24px #80566626, 0 2px 4px #80566614; }
+.message-window.is-older { box-shadow: 0 1px 4px #8056660a; }
+.message-window:last-child { box-shadow: 0 7px 22px #80566620, 0 1px 4px #80566614; }
 .controls {
   position: absolute;
   z-index: 1000;
@@ -130,7 +133,7 @@ h1 { margin: 0; font-size: 22px; font-weight: 600; line-height: 1.5; letter-spac
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .no-script { position: absolute; bottom: 20px; width: 100%; text-align: center; font-size: 14px; }
 @keyframes arrive {
-  from { opacity: 0; transform: translateY(14px) scale(.92); }
+  from { opacity: 0; transform: translateY(8px) scale(.97); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 @media (min-width: 768px) {
@@ -161,7 +164,7 @@ h1 { margin: 0; font-size: 22px; font-weight: 600; line-height: 1.5; letter-spac
   <main id="scene" aria-label="给宝宝的祝福礼物">
     <div id="windows" role="list" aria-label="送给你的悄悄话"></div>
     <section id="invitation" class="invitation" aria-labelledby="question">
-      <div class="window-bar"><span aria-hidden="true">❤️</span><span>宝宝</span></div>
+      <div class="window-bar"><span aria-hidden="true">♥</span><span>宝宝</span></div>
       <div class="invitation-body">
         <svg class="gift-envelope" viewBox="0 0 100 80" fill="none" aria-hidden="true">
           <rect x="13" y="24" width="74" height="48" rx="7" fill="#f5c8d8"/>
@@ -180,133 +183,133 @@ h1 { margin: 0; font-size: 22px; font-weight: 600; line-height: 1.5; letter-spac
     </section>
     <nav id="controls" class="controls" aria-label="播放控制" hidden>
       <button id="pause" type="button" aria-label="暂停弹窗" title="暂停 / 继续">暂停</button>
-      <button id="replay" type="button" aria-label="重新打开礼物" hidden>再收一次 ♥</button>
+      <button id="replay" type="button" aria-label="重新打开礼物" hidden>再看一遍 ♥</button>
     </nav>
     <p id="status" class="sr-only" role="status" aria-live="polite"></p>
     <noscript><p class="no-script">请开启浏览器的 JavaScript，即可打开这份礼物。</p></noscript>
   </main>
 <script>
 window.GIFT_MESSAGES = Object.freeze([
-  "我想你啦",
-  "期待下次见面哦",
-  "顺顺利利",
-  "烦恼消失",
-  "早点睡哦",
-  "多喝水哦",
-  "不要熬夜哦",
-  "想抱抱你",
-  "给你贴贴",
-  "今天也喜欢你",
-  "过来抱一下",
-  "吃饭了没呀",
-  "被子盖好哦",
-  "今天累不累呀",
-  "天冷多穿点",
-  "你笑起来好甜",
-  "陪我散散步嘛",
-  "想听你碎碎念",
-  "见面要抱久点",
-  "天天开心哦",
-  "亲亲你",
-  "记得吃早餐",
-  "别踢被子啦",
-  "辛苦啦抱抱",
-  "外套带上哦",
-  "怎么这么可爱",
-  "想和你看日落",
-  "今天有什么趣事",
-  "见到你就开心",
-  "好运来啦",
-  "想牵你的手",
-  "趁热吃哦",
-  "做个甜甜的梦",
-  "歇一会儿嘛",
-  "出门带伞呀",
-  "又被你可爱到",
-  "一起去吃火锅",
-  "小事也想听",
-  "再待一小会儿",
-  "烦心事走开",
-  "有点想见你",
-  "多吃两口嘛",
-  "晚安亲亲",
-  "肩膀借你靠",
-  "别淋雨啦",
-  "今天好好看",
-  "下次吃什么呀",
-  "刚刚又想你了",
-  "舍不得松手",
-  "好梦都给你",
-  "好想黏着你",
-  "水果也要吃",
-  "梦里见哦",
-  "手给我牵牵",
-  "走路慢点哦",
-  "脸蛋给我捏捏",
-  "想陪你逛超市",
-  "在干嘛呀",
-  "想靠近一点点",
-  "好事多一点",
-  "再抱一小会儿",
-  "别光喝奶茶",
-  "睡醒找我玩",
-  "不开心就抱抱",
-  "路上小心呀",
-  "夸夸你",
-  "一起窝着看剧",
-  "今天过得咋样",
-  "借我亲一口",
-  "今天也甜甜的",
-  "想和你贴一起",
-  "奶茶分我一口",
-  "早呀小懒猫",
-  "我在听呢",
-  "别冻着小手",
-  "给你比个心",
-  "周末见一面吧",
-  "想你想到发呆",
-  "想把你抱紧",
-  "吃嘛嘛香",
-  "隔空亲一下",
-  "好吃的分你",
-  "睡饱了吗",
-  "想说什么都行",
-  "手冷给我捂",
-  "想摸摸你的头",
-  "走呀去买零食",
-  "有好多话想说",
-  "鼻尖碰一下",
-  "心情美美的",
-  "偷偷想你",
-  "给你留一口",
-  "午睡一会儿嘛",
-  "我陪着你呀",
-  "风大戴好帽子",
-  "你一笑我就开心",
-  "陪你压马路",
-  "想分享给你",
-  "抱抱充个电",
-  "别皱小眉头",
-  "多抱我一会儿",
-  "想请你吃饭",
-  "困了就睡哦",
-  "给你揉揉肩",
-  "到家歇会儿",
-  "好喜欢你的声音",
-  "想挨着你坐",
-  "看见好吃的想你",
-  "见面先抱抱",
-  "给你一颗糖",
-  "口袋里有糖",
-  "最后一口给你",
-  "小花送给你",
-  "给你买小蛋糕",
-  "一起慢慢走",
-  "明天也想见你",
-  "下次还牵手",
-  "再亲一下嘛",
-  "喜欢你多一点",
-  "最喜欢你啦"
+  "要顺顺利利呀",
+  "烦恼通通跑掉",
+  "乖乖早点睡哦",
+  "记得多喝温水",
+  "不许偷偷熬夜",
+  "要开开心心哒",
+  "不许太累啦宝贝",
+  "好好吃饭好不好",
+  "天冷要添衣服",
+  "出门要注意安全",
+  "累了就跟我说",
+  "不许硬撑着哦",
+  "今天也要好运",
+  "万事都如你愿",
+  "要照顾好自己",
+  "少一点压力嘛",
+  "多留一点轻松",
+  "想你每时每刻",
+  "忙完记得找我",
+  "不许不开心哦",
+  "要平安又喜乐",
+  "好好歇一歇呀",
+  "别着凉了宝贝",
+  "三餐要按时吃",
+  "吃饱才有力气",
+  "记得偷偷想我",
+  "我一直在想你",
+  "今晚做个好梦",
+  "梦里我们相见",
+  "身体要棒棒的",
+  "工作顺顺利利",
+  "麻烦全都躲开",
+  "遇事不要发愁",
+  "放宽心慢慢来",
+  "笑容不要消失",
+  "岁岁都陪着你",
+  "无灾也无难呀",
+  "前路闪闪亮亮",
+  "走路慢一点点",
+  "好好保护自己",
+  "不要生闷气啦",
+  "情绪要甜甜的",
+  "不用慌不用急",
+  "日子温柔待你",
+  "所有收获都甜",
+  "好运偏爱我的宝",
+  "焦虑全部退散",
+  "有空就歇一会",
+  "多伸伸懒腰哦",
+  "爱惜你的身体",
+  "肩膀别绷太紧",
+  "眼里一直有光",
+  "心愿都会实现",
+  "一路都是坦途",
+  "事事稳稳当当",
+  "少点奔波劳累",
+  "留点清闲给自己",
+  "晚风轻轻陪你",
+  "安心乖乖睡觉",
+  "一觉睡到天亮",
+  "醒来全是欢喜",
+  "四季平安安康",
+  "保持你的热爱",
+  "难关都会跨过",
+  "好运如约而至",
+  "别委屈自己啦",
+  "我会一直陪你",
+  "不用事事逞强",
+  "难过就告诉我",
+  "清风一直伴你",
+  "暖阳跟随着你",
+  "诸事都安安稳稳",
+  "常常保持微笑",
+  "前路没有烦忧",
+  "身心舒舒服服",
+  "永远被我偏爱",
+  "不许忽略自己",
+  "疲惫少一点点",
+  "福气常常来找你",
+  "万事皆可期待",
+  "想扑进你怀里",
+  "有我在别害怕",
+  "今天也要元气",
+  "难题自动躲开",
+  "贵人一直相伴",
+  "心情要暖洋洋",
+  "好好放松一下",
+  "少碰生冷食物",
+  "记得慢慢喝水",
+  "劳逸结合哦宝",
+  "黑夜也有温柔",
+  "好梦环绕着你",
+  "年年都有欢喜",
+  "平安常伴左右",
+  "自在舒心就好",
+  "所得皆是美好",
+  "脚步从容一点",
+  "烦心事快走开",
+  "每天甜甜蜜蜜",
+  "好好爱惜自己",
+  "见面要抱抱你",
+  "想念藏在心底",
+  "愿你轻松自在",
+  "所有坎坷抚平",
+  "喜乐常驻心间",
+  "顺风顺水无忧",
+  "累了就停下来",
+  "好好善待自己",
+  "好运源源不断",
+  "岁岁平安顺遂",
+  "保持满满活力",
+  "烦恼不许靠近",
+  "一切慢慢变好",
+  "愿你事事稳妥",
+  "我永远向着你",
+  "疲惫统统消散",
+  "每天都有小惊喜",
+  "安心做你自己",
+  "温柔永远予你",
+  "我超超级爱你",
 ]);
 
 (() => {
@@ -317,6 +320,7 @@ window.GIFT_MESSAGES = Object.freeze([
   const pauseButton = document.querySelector("#pause");
   const replayButton = document.querySelector("#replay");
   const status = document.querySelector("#status");
+  const MESSAGE_INTERVAL_MS = 200;
   const colors = [
     ["#f6dce6", "#fff5f8"],
     ["#deedf5", "#f3faff"],
@@ -329,7 +333,7 @@ window.GIFT_MESSAGES = Object.freeze([
   let cards = [];
   let frame = 0;
   let elapsed = 0;
-  let previousTime = 0;
+  let previousTime = null;
   let paused = false;
   let playing = false;
 
@@ -345,7 +349,7 @@ window.GIFT_MESSAGES = Object.freeze([
     // Distribute recent messages vertically so more lines stay readable on phones.
     const rows = Math.max(3, Math.min(8, Math.floor(windows.clientHeight / (height * 1.05))));
     const x = index === 0 ? .5 : scatter(12.9898);
-    const y = index === 0 ? .46 : ((index % rows) + scatter(78.233) * .45) / (rows - .55);
+    const y = index === 0 ? .46 : ((index % rows) + scatter(78.233) * .25) / (rows - .75);
     card.style.left = `${x * roomX}px`;
     card.style.top = `${y * roomY}px`;
   }
@@ -361,7 +365,7 @@ window.GIFT_MESSAGES = Object.freeze([
     const bar = document.createElement("div");
     bar.className = "window-bar";
     const heart = document.createElement("span");
-    heart.textContent = "❤️";
+    heart.textContent = "♥";
     heart.setAttribute("aria-hidden", "true");
     const title = document.createElement("span");
     title.textContent = "宝宝";
@@ -371,19 +375,18 @@ window.GIFT_MESSAGES = Object.freeze([
     card.append(bar, text);
     windows.append(card);
     cards.push(card);
+    if (cards.length > 12) cards[cards.length - 13].classList.add("is-older");
     position(card, index);
-  }
-
-  function dueAt(index) {
-    return index < 6 ? index * 650 : 3900 + (index - 6) * 220;
   }
 
   function tick(time) {
     if (!playing || paused || document.hidden) return;
-    if (previousTime) elapsed += time - previousTime;
+    if (previousTime !== null) elapsed += time - previousTime;
     previousTime = time;
-    while (cards.length < messages.length && elapsed >= dueAt(cards.length)) {
+    // Keep the normal 200 ms rhythm; skip accumulated intervals after a long stall.
+    if (cards.length < messages.length && (cards.length === 0 || elapsed >= MESSAGE_INTERVAL_MS)) {
       addMessage(cards.length);
+      elapsed = elapsed >= MESSAGE_INTERVAL_MS * 2 ? 0 : elapsed % MESSAGE_INTERVAL_MS;
     }
     if (cards.length === messages.length) {
       playing = false;
@@ -401,7 +404,7 @@ window.GIFT_MESSAGES = Object.freeze([
     windows.replaceChildren();
     cards = [];
     elapsed = 0;
-    previousTime = 0;
+    previousTime = null;
     paused = false;
     playing = true;
     invitation.hidden = true;
@@ -422,13 +425,13 @@ window.GIFT_MESSAGES = Object.freeze([
     pauseButton.textContent = paused ? "继续" : "暂停";
     pauseButton.setAttribute("aria-label", paused ? "继续弹窗" : "暂停弹窗");
     cancelAnimationFrame(frame);
-    previousTime = 0;
+    previousTime = null;
     if (!paused) frame = requestAnimationFrame(tick);
     status.textContent = paused ? "已暂停。" : "继续为你送上悄悄话。";
   });
   document.addEventListener("visibilitychange", () => {
     cancelAnimationFrame(frame);
-    previousTime = 0;
+    previousTime = null;
     if (!document.hidden && playing && !paused) frame = requestAnimationFrame(tick);
   });
   // React to the usable area itself, including browser bars and changing safe insets.
